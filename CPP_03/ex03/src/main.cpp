@@ -6,7 +6,7 @@
 /*   By: lefreydier <lefreydier@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 17:01:37 by lefreydier        #+#    #+#             */
-/*   Updated: 2024/03/13 15:43:08 by lefreydier       ###   ########.fr       */
+/*   Updated: 2024/03/13 19:09:46 by lefreydier       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,8 @@ int main(void)
 	DiamondTrap	jenny("Jenny");
 
 	jenny.whoAmI();
-	jenny.attack("Jack");
-	jenny.beRepaired(3);
 	std::cout << "Jenny      : " << jenny.getHitP() << " hit points left and " << jenny.getEnergyP() << " energy points"  << std::endl;
 	std::cout << "Jenny      : " << jenny.getAttackP() << " attack point"  << std::endl;
+	jenny.attack("Jack");
+	jenny.beRepaired(3);
 }

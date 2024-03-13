@@ -6,7 +6,7 @@
 /*   By: lefreydier <lefreydier@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 15:31:22 by lefreydier        #+#    #+#             */
-/*   Updated: 2024/03/13 15:32:16 by lefreydier       ###   ########.fr       */
+/*   Updated: 2024/03/13 19:34:19 by lefreydier       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ public:
 	ScavTrap	&operator=(ScavTrap const &st);
 	void		attack(const std::string &target);
 	void		guardGate(void);
+protected :
+	unsigned int _energyP;
 };
 
 #endif
