@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfreydie <lfreydie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lefreydier <lefreydier@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 15:31:22 by lefreydier        #+#    #+#             */
-/*   Updated: 2024/03/05 21:23:06 by lfreydie         ###   ########.fr       */
+/*   Updated: 2024/03/13 15:32:16 by lefreydier       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 class ScavTrap: virtual public ClapTrap
 {
 public:
+	ScavTrap();
 	ScavTrap(std::string name);
 	ScavTrap(ScavTrap const &st);
 	~ScavTrap(void);

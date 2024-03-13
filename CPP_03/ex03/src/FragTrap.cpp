@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfreydie <lfreydie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lefreydier <lefreydier@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:37:02 by lfreydie          #+#    #+#             */
-/*   Updated: 2024/03/05 19:49:18 by lfreydie         ###   ########.fr       */
+/*   Updated: 2024/03/13 15:33:37 by lefreydier       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/FragTrap.hpp"
+
+FragTrap::FragTrap()
+{
+	std::cout << "fragtrap constructor called" << std::endl;
+	this->_hitP = 100;
+	this->_energyP = 100;
+	this->_attackP = 30;
+	return ;
+}
 
 FragTrap::FragTrap(std::string name): ClapTrap(name)
 {
