@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfreydie <lfreydie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lefreydier <lefreydier@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:33:09 by lfreydie          #+#    #+#             */
-/*   Updated: 2024/03/05 19:36:20 by lfreydie         ###   ########.fr       */
+/*   Updated: 2024/03/13 19:51:37 by lefreydier       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 class FragTrap: public ClapTrap
 {
 public:
+	FragTrap();
 	FragTrap(std::string name);
 	FragTrap(FragTrap const &ft);
 	~FragTrap();

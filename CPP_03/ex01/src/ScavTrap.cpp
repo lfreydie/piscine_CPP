@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfreydie <lfreydie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lefreydier <lefreydier@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 15:30:02 by lefreydier        #+#    #+#             */
-/*   Updated: 2024/03/05 19:23:01 by lfreydie         ###   ########.fr       */
+/*   Updated: 2024/03/13 19:56:52 by lefreydier       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
+
+ScavTrap::ScavTrap()
+{
+	std::cout << "scavtrap constructor called" << std::endl;
+	this->_hitP = 100;
+	this->_energyP = 50;
+	this->_attackP = 20;
+	return ;
+}
 
 ScavTrap::ScavTrap(std::string name): ClapTrap(name)
 {

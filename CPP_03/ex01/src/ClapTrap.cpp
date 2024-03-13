@@ -3,14 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfreydie <lfreydie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lefreydier <lefreydier@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 17:00:15 by lefreydier        #+#    #+#             */
-/*   Updated: 2024/03/05 19:29:12 by lfreydie         ###   ########.fr       */
+/*   Updated: 2024/03/13 19:56:31 by lefreydier       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ClapTrap.hpp"
+
+ClapTrap::ClapTrap(): _name("name"), _hitP(10), _energyP(10), _attackP(0)
+{
+	std::cout << "constructor called: " << this->_name << " appears" << std::endl;
+	return ;
+}
 
 ClapTrap::ClapTrap(std::string name): _name(name), _hitP(10), _energyP(10), _attackP(0)
 {
