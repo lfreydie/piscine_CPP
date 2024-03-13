@@ -6,7 +6,7 @@
 /*   By: lefreydier <lefreydier@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:49:05 by lfreydie          #+#    #+#             */
-/*   Updated: 2024/03/13 19:14:25 by lefreydier       ###   ########.fr       */
+/*   Updated: 2024/03/13 19:49:21 by lefreydier       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ DiamondTrap::DiamondTrap()
 {
 	std::cout << "diamondtrap constructor called" << std::endl;
 	this->ClapTrap::_name += "_clap_name";
-	this->_hitP = this->FragTrap::_hitP;
-	this->_attackP = this->FragTrap::_attackP;
-	this->_energyP = this->ScavTrap::_energyP;
+	this->setHitP(FragTrap::_hitP);
+	this->setAttackP(FragTrap::_attackP);
+	this->setEnergyP(ScavTrap::_energyP);
 	return ;
 }
 
@@ -27,9 +27,9 @@ DiamondTrap::DiamondTrap(std::string name): ClapTrap(name), ScavTrap(name), Frag
 	std::cout << "diamondtrap constructor called" << std::endl;
 	_name = name;
 	ClapTrap::_name += "_clap_name";
-	this->_hitP = this->FragTrap::_hitP;
-	this->_energyP = this->ScavTrap::_energyP;
-	this->_attackP = this->FragTrap::_attackP;
+	this->setHitP(FragTrap::_hitP);
+	this->setAttackP(FragTrap::_attackP);
+	this->setEnergyP(ScavTrap::_energyP);
 	return ;
 }
 
