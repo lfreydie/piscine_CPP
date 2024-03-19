@@ -6,7 +6,7 @@
 /*   By: lefreydier <lefreydier@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 17:16:49 by lefreydier        #+#    #+#             */
-/*   Updated: 2024/03/18 19:05:04 by lefreydier       ###   ########.fr       */
+/*   Updated: 2024/03/19 10:58:01 by lefreydier       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ Dog	&Dog::operator=(const Dog &rhs)
 	std::cout << "Dog assignation operator called" << std::endl;
 	if (this != &rhs)
 	{
+		delete (this->_brain); // see how it must be handle
 		this->_type = rhs._type;
 		for (int i = 0; i < 100; i++)
 		{

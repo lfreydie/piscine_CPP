@@ -6,7 +6,7 @@
 /*   By: lefreydier <lefreydier@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 17:15:44 by lefreydier        #+#    #+#             */
-/*   Updated: 2024/03/18 19:05:12 by lefreydier       ###   ########.fr       */
+/*   Updated: 2024/03/19 10:57:13 by lefreydier       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ Cat	&Cat::operator=(const Cat &rhs)
 	std::cout << "Cat assignation operator called" << std::endl;
 	if (this != &rhs)
 	{
+		delete (this->_brain);
 		this->_type = rhs._type;
 		for (int i = 0; i < 100; i++)
 		{
