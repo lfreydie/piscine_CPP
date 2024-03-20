@@ -6,7 +6,7 @@
 /*   By: lfreydie <lfreydie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 10:25:01 by lefreydier        #+#    #+#             */
-/*   Updated: 2024/03/19 14:21:16 by lfreydie         ###   ########.fr       */
+/*   Updated: 2024/03/20 18:33:52 by lfreydie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,10 @@ void	AMateria::setType(std::string const& type)
 std::string const&	AMateria::getType() const
 {
 	return (this->_type);
+}
+
+void	AMateria::use(ICharacter& target)
+{
+	std::cout << "\"* shoots a materia at " << target.getName() << " *\"" << std::endl;
+	return ;
 }

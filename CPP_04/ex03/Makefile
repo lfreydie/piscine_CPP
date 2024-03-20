@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lefreydier <lefreydier@student.42.fr>      +#+  +:+       +#+         #
+#    By: lfreydie <lfreydie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 15:01:41 by lfreydie          #+#    #+#              #
-#    Updated: 2024/03/18 18:58:47 by lefreydier       ###   ########.fr        #
+#    Updated: 2024/03/20 18:28:17 by lfreydie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ END=\033[0m
 
 # ------------ Files ----------- #
 
-SRC_F =	 main.cpp Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
+SRC_F =	 main.cpp MateriaSource.cpp Ice.cpp Cure.cpp Character.cpp AMateria.cpp
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_F))
 OBJ = $(patsubst $(SRC_DIR)/%,$(OBJ_DIR)/%,$(SRC:.cpp=.o))
 DEPS = $(OBJ:.o=.d)
