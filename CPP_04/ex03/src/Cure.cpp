@@ -6,7 +6,7 @@
 /*   By: lfreydie <lfreydie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 14:34:16 by lfreydie          #+#    #+#             */
-/*   Updated: 2024/03/19 14:35:33 by lfreydie         ###   ########.fr       */
+/*   Updated: 2024/03/21 21:53:45 by lfreydie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 Cure::Cure()
 {
 	std::cout << "Cure default constructor called" << std::endl;
-	this->setType("Cure");
+	this->setType("cure");
 	return ;
 }
 

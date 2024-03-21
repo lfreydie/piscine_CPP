@@ -6,7 +6,7 @@
 /*   By: lfreydie <lfreydie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:21:19 by lfreydie          #+#    #+#             */
-/*   Updated: 2024/03/20 18:06:55 by lfreydie         ###   ########.fr       */
+/*   Updated: 2024/03/21 22:09:51 by lfreydie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ public:
 	Character&			operator=(Character const &ic);
 
 	std::string const&	getName() const;
+	AMateria*			getMateria(int idx) const;
 	void				equip(AMateria* m);
 	void				unequip(int idx);
 	void				use(int idx, ICharacter& target);
