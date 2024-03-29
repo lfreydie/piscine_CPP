@@ -6,10 +6,11 @@
 /*   By: lefreydier <lefreydier@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 15:35:12 by lefreydier        #+#    #+#             */
-/*   Updated: 2024/03/24 16:41:54 by lefreydier       ###   ########.fr       */
+/*   Updated: 2024/03/29 18:01:44 by lefreydier       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Form.hpp"
 #include "Bureaucrat.hpp"
 
 Bureaucrat::Bureaucrat():_name("name"), _grade(150)
@@ -107,6 +108,19 @@ void	Bureaucrat::gradeDown(unsigned int amount)
 	else
 		throw Bureaucrat::GradeTooLowException();
 	return ;
+}
+
+void	Bureaucrat::signForm(Form& f)
+{
+	try
+	{
+		f.beSigned(*this);
+		std::cout << _name << " signed " << f.getName() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << _name << " couldn't sign " << f.getName() << " because " << e.what() << std::endl;
+	}
 }
 
 std::ostream&	operator<<(std::ostream& o, Bureaucrat const& b)

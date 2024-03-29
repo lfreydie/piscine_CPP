@@ -6,19 +6,20 @@
 /*   By: lefreydier <lefreydier@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 15:35:12 by lefreydier        #+#    #+#             */
-/*   Updated: 2024/03/24 17:15:04 by lefreydier       ###   ########.fr       */
+/*   Updated: 2024/03/29 17:40:31 by lefreydier       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
+#include "Bureaucrat.hpp"
 
-Form::Form():_name("name"), _gradeS(150), _gradeX(150), _signed(false)
+Form::Form():_name("name"), _signed(false), _gradeS(150), _gradeX(150)
 {
 	std::cout << "Form default constructor called" << std::endl;
 	return ;
 }
 
-Form::Form(std::string name, int gradeS, int gradeX): _name(name), _gradeS(gradeS), _gradeX(gradeX), _signed(false)
+Form::Form(std::string name, int gradeS, int gradeX): _name(name), _signed(false), _gradeS(gradeS), _gradeX(gradeX)
 {
 	std::cout << "Form parametric constructor called" << std::endl;
 	if (gradeS < 1 || gradeX <1)
@@ -28,7 +29,7 @@ Form::Form(std::string name, int gradeS, int gradeX): _name(name), _gradeS(grade
 	return ;
 }
 
-Form::Form(Form const& src): _gradeS(src.getGradeS()), _gradeX(src.getGradeX())
+Form::Form(Form const& src): _name(src.getName()), _gradeS(src.getGradeS()), _gradeX(src.getGradeX())
 {
 	std::cout << "Form copy constructor called" << std::endl;
 	*this = src;
@@ -43,12 +44,17 @@ Form::~Form()
 
 const char*	Form::GradeTooHighException::what() const throw()
 {
-	return ("Form : Grade too high !");
+	return ("grade too high");
 }
 
 const char*	Form::GradeTooLowException::what() const throw()
 {
-	return ("Form : Grade too low !");
+	return ("grade too low");
+}
+
+const char*	Form::AlreadySignedException::what() const throw()
+{
+	return ("form is already signed");
 }
 
 Form&	Form::operator=(Form const& b)
@@ -66,13 +72,13 @@ std::string const	Form::getName() const
 	return (this->_name);
 }
 
-unsigned int const	Form::getGradeS() const
+unsigned int	Form::getGradeS() const
 {
 	return (this->_gradeS);
 }
 
 
-unsigned int const	Form::getGradeX() const
+unsigned int	Form::getGradeX() const
 {
 	return (this->_gradeX);
 }
@@ -82,19 +88,14 @@ bool	Form::isSigned() const
 	return (this->_signed);
 }
 
-void	Form::beSigned(Bureaucrat& b)
+void	Form::beSigned(Bureaucrat const& b)
 {
-	try
-	{
-		if (this->getGradeS() >= b.getGrade())
-			this->_signed = true;
-		else
-			throw	Form::GradeTooLowException();
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
+	if (isSigned())
+		throw	Form::AlreadySignedException();
+	if (getGradeS() >= b.getGrade())
+		_signed = true;
+	else
+		throw	Form::GradeTooLowException();
 }
 
 std::ostream&	operator<<(std::ostream& o, Form const& b)

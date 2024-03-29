@@ -6,13 +6,15 @@
 /*   By: lefreydier <lefreydier@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 15:35:17 by lefreydier        #+#    #+#             */
-/*   Updated: 2024/03/24 16:40:43 by lefreydier       ###   ########.fr       */
+/*   Updated: 2024/03/29 17:37:22 by lefreydier       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <iostream>
+
+class Form;
 
 class Bureaucrat
 {
@@ -42,6 +44,7 @@ public:
 	void					gradeUp(unsigned int amount);
 	void					gradeDown();
 	void					gradeDown(unsigned int amount);
+	void					signForm(Form& f);
 };
 
 std::ostream	&operator<<(std::ostream&o, Bureaucrat const& b);

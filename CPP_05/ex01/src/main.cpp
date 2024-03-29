@@ -1,92 +1,79 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lefreydier <lefreydier@student.42.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/29 16:57:10 by lefreydier        #+#    #+#             */
+/*   Updated: 2024/03/29 18:03:32 by lefreydier       ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int	main(void)
 {
 	try
 	{
-		Bureaucrat	barry("Barry", 150);
-		Bureaucrat	minnie("Minnie", 100);
-
-		std::cout << "\n----------START----------" << std::endl;
-		std::cout << "\n---------OUR TEAM--------\n" << std::endl;
-		std::cout << barry << std::endl;
-		std::cout << minnie << std::endl;
-
-		std::cout << "\n-----------DAY 1---------\n" << std::endl;
-		std::cout << "Barry gets promoted by 50 grades" << std::endl;
+		std::cout << "-------------START-------------\n" << std::endl;
+		std::cout << "Creating bureaucrats:\n" << std::endl;
+		Bureaucrat	henry("Henry", 70);
+		Bureaucrat	clark("Clark", 20);
 		try
 		{
-			barry.gradeUp(50);
+			std::cout << "\n1. Creating Form with grade to sign too high" << std::endl;
+			Form	form1("f01", 0, 40);
 		}
 		catch(const std::exception& e)
 		{
-			std::cerr << "Exception: " << e.what() << std::endl;
+			std::cerr << "Exception: " << e.what() << '\n' << std::endl;
 		}
-		std::cout << "\nMinnie gets promoted by 80 grades" << std::endl;
 		try
 		{
-			minnie.gradeUp(80);
+			std::cout << "\n2. Creating Form with grade to sign too low" << std::endl;
+			Form	form2("f02", 160, 40);
 		}
 		catch(const std::exception& e)
 		{
-			std::cerr << "Exception: " << e.what() << std::endl;
+			std::cerr << "Exception: " << e.what() << '\n' << std::endl;
 		}
-
-		std::cout << "\n---------OUR TEAM--------\n" << std::endl;
-		std::cout << barry << std::endl;
-		std::cout << minnie << std::endl;
-
-		std::cout << "\n-----------DAY 2---------\n" << std::endl;
-
-		std::cout << "Barry gets promoted by 1 grade" << std::endl;
-		try
+			try
 		{
-			barry.gradeUp();
+			std::cout << "\n3. Creating Form with grade to execute too high" << std::endl;
+			Form	form3("f03", 40, 0);
 		}
 		catch(const std::exception& e)
 		{
-			std::cerr << "Exception: " << e.what() << std::endl;
+			std::cerr << "Exception: " << e.what() << '\n' << std::endl;
 		}
-		std::cout << "\nMinnie gets promoted by 1 grade" << std::endl;
 		try
 		{
-			minnie.gradeUp();
+			std::cout << "\n4. Creating Form with grade to execute too low" << std::endl;
+			Form	form4("f04", 60, 410);
 		}
 		catch(const std::exception& e)
 		{
-			std::cerr << "Exception: " << e.what() << std::endl;
+			std::cerr << "Exception: " << e.what() << '\n' << std::endl;
 		}
-		std::cout << "\n---------OUR TEAM--------\n" << std::endl;
-		std::cout << barry << std::endl;
-		std::cout << minnie << std::endl;
-
-		std::cout << "\n-----------DAY 3---------\n" << std::endl;
-		std::cout << "Barry fucked up and his boss wants to fire him" << std::endl;
 		try
 		{
-			barry.gradeDown(1000);
+			std::cout << "\n5. Testing bureaucrat signing process" << std::endl;
+			Form	form5("f05", 60, 50);
+			henry.signForm(form5);
+			clark.signForm(form5);
+			henry.signForm(form5);
+			std::cout << std::endl;
 		}
 		catch(const std::exception& e)
 		{
-			std::cerr << "Exception: " << e.what() << " He founds a way to hide from his boss and it worked!" << std::endl;
+			std::cerr << e.what() << '\n' << std::endl;
 		}
-		std::cout << "\nMinnie gets promoted by 100 grades what a queen!" << std::endl;
-		try
-		{
-			minnie.gradeUp(100);
-		}
-		catch(const std::exception& e)
-		{
-			std::cerr << "Exception: " << e.what() << " It was too good to be true.." << std::endl;
-		}
-		std::cout << "\n---------OUR TEAM--------\n" << std::endl;
-		std::cout << barry << std::endl;
-		std::cout << minnie << std::endl;
-		std::cout << "\n-----------END-----------\n" << std::endl;
+	std::cout << "\n--------------END--------------\n" << std::endl;
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << "Exception: " << e.what() << '\n';
+		std::cerr << e.what() << '\n' << std::endl;
 	}
 }
