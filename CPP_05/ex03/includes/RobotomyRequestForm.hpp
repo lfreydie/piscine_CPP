@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
+/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lefreydier <lefreydier@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/02 17:27:58 by lefreydier        #+#    #+#             */
-/*   Updated: 2024/04/17 13:21:16 by lefreydier       ###   ########.fr       */
+/*   Created: 2024/04/02 17:27:20 by lefreydier        #+#    #+#             */
+/*   Updated: 2024/04/17 13:20:58 by lefreydier       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
+#include "AForm.hpp"
 #include <iostream>
 #include <iomanip>
-#include "AForm.hpp"
 
-class PresidentialPardonForm: public	AForm
+class RobotomyRequestForm: public	AForm
 {
 private:
 	std::string				_target;
 public:
-	PresidentialPardonForm();
-	PresidentialPardonForm(std::string target);
-	PresidentialPardonForm(PresidentialPardonForm const& src);
-	~PresidentialPardonForm();
+	RobotomyRequestForm();
+	RobotomyRequestForm(std::string target);
+	RobotomyRequestForm(RobotomyRequestForm const& src);
+	~RobotomyRequestForm();
 
-	PresidentialPardonForm	&operator=(PresidentialPardonForm const& ppf);
-	std::string				getTarget() const;
-	void					execute(Bureaucrat const& executor) const;
+	RobotomyRequestForm	&operator=(RobotomyRequestForm const& rrf);
+	std::string			getTarget() const;
+	void				execute(Bureaucrat const& executor) const;
 };
 
-std::ostream	&operator<<(std::ostream& o, PresidentialPardonForm const& b);
+std::ostream	&operator<<(std::ostream& o, RobotomyRequestForm const& b);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
+/*   Intern.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lefreydier <lefreydier@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/02 17:27:58 by lefreydier        #+#    #+#             */
-/*   Updated: 2024/04/17 13:21:16 by lefreydier       ###   ########.fr       */
+/*   Created: 2024/04/17 12:33:59 by lefreydier        #+#    #+#             */
+/*   Updated: 2024/04/17 12:39:37 by lefreydier       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,17 @@
 #include <iostream>
 #include <iomanip>
 #include "AForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
-class PresidentialPardonForm: public	AForm
+class Intern
 {
-private:
-	std::string				_target;
 public:
-	PresidentialPardonForm();
-	PresidentialPardonForm(std::string target);
-	PresidentialPardonForm(PresidentialPardonForm const& src);
-	~PresidentialPardonForm();
+	Intern();
+	Intern(Intern const& src);
+	~Intern();
 
-	PresidentialPardonForm	&operator=(PresidentialPardonForm const& ppf);
-	std::string				getTarget() const;
-	void					execute(Bureaucrat const& executor) const;
+	Intern	&operator=(Intern const& i);
+	AForm	*makeForm(std::string fname, std::string target);
 };
-
-std::ostream	&operator<<(std::ostream& o, PresidentialPardonForm const& b);

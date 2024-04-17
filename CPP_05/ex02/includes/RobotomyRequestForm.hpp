@@ -6,9 +6,11 @@
 /*   By: lefreydier <lefreydier@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:27:20 by lefreydier        #+#    #+#             */
-/*   Updated: 2024/04/04 18:39:46 by lefreydier       ###   ########.fr       */
+/*   Updated: 2024/04/17 13:21:23 by lefreydier       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#pragma once
 
 #include "AForm.hpp"
 #include <iostream>
