@@ -47,6 +47,7 @@
 		"stdexcept": "cpp",
 		"streambuf": "cpp",
 		"typeinfo": "cpp",
-		"compare": "cpp"
+		"compare": "cpp",
+		"scoped_allocator": "cpp"
 	}
 }
