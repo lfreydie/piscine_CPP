@@ -6,7 +6,7 @@
 /*   By: lfreydie <lfreydie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 15:28:57 by lefreydier        #+#    #+#             */
-/*   Updated: 2024/04/22 16:15:09 by lfreydie         ###   ########.fr       */
+/*   Updated: 2024/04/22 17:06:06 by lfreydie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ bool	ScalarConverter::hasADot(float f)
 	if (f == std::numeric_limits<float>::infinity() || f == -std::numeric_limits<float>::infinity())
 		return (0);
 	ss << f;
-	return (ss.str().find('.') == std::string::npos && ss.str().find('n') == std::string::npos);
+	return (ss.str().find('.') == std::string::npos && ss.str().find('n') == std::string::npos && ss.str().find('e') == std::string::npos);
 }
 
 bool	ScalarConverter::hasADot(double d)
@@ -126,7 +126,7 @@ bool	ScalarConverter::hasADot(double d)
 	if (d == std::numeric_limits<double>::infinity() || d == -std::numeric_limits<double>::infinity())
 		return (0);
 	ss << d;
-	return (ss.str().find('.') == std::string::npos && ss.str().find('n') == std::string::npos);
+	return (ss.str().find('.') == std::string::npos && ss.str().find('n') == std::string::npos && ss.str().find('e') == std::string::npos);
 }
 
 void	ScalarConverter::convertChar(char const *input)
@@ -148,7 +148,7 @@ void	ScalarConverter::convertInt(char const *input)
 		return ;
 	}
 	int		i = atoi(input);
-	if (isprint(i))
+	if (i >= 32 && i <= 126)
 		std::cout << "char: '" << static_cast<char>(i) << "'" << std::endl;
 	else if (i < 0 || i > 255)
 		std::cout << "char: Impossible" << std::endl;
@@ -176,7 +176,7 @@ void	ScalarConverter::convertFloat(char const *input)
 	}
 	else
 	{
-		if (isprint(f))
+		if (f >= 32 && f <= 126)
 			std::cout << "char: '" << static_cast<char>(f) << "'" << std::endl;
 		else if (f < 0 || f > 255 || !strcmp(input, "nanf"))
 			std::cout << "char: Impossible" << std::endl;
