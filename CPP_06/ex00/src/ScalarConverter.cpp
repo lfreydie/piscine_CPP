@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lefreydier <lefreydier@student.42.fr>      +#+  +:+       +#+        */
+/*   By: lfreydie <lfreydie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 15:28:57 by lefreydier        #+#    #+#             */
-/*   Updated: 2024/04/19 19:08:06 by lefreydier       ###   ########.fr       */
+/*   Updated: 2024/04/22 16:15:09 by lfreydie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,121 +38,209 @@ ScalarConverter	&ScalarConverter::operator=(ScalarConverter const &sc)
 	return (*this);
 }
 
-StringType	ScalarConverter::detectType(std::string const &str)
+StringType	ScalarConverter::detectType(char const *input)
 {
-	std::istringstream	iss(str);
-	bool				(*type[4])(std::istringstream &iss) = {isChar, isInt, isFloat, isDouble};
+	std::istringstream	iss(input);
+	bool				(*type[4])(std::istringstream &iss, char const *input) = {isChar, isInt, isFloat, isDouble};
 	int					i;
 
 	for (i = 0; i < 4; i++)
 	{
-		iss.str(str);
+		iss.str(input);
 		iss.clear();
-		if (type[i](iss))
+		if (type[i](iss, input))
 			return (static_cast<StringType>(i));
 	}
-	return (static_cast<StringType>(i));
+	return (isUnknown(input));
 }
 
-bool	ScalarConverter::isChar(std::istringstream &iss)
+bool	ScalarConverter::isChar(std::istringstream &iss, char const *input)
 {
 	char	c;
-	iss >> c;
+
 	(void)c;
-	return (!iss.fail() && iss.eof());
+	iss >> c;
+	return (!iss.fail() && (strlen(input) == 1));
 }
 
-bool	ScalarConverter::isInt(std::istringstream &iss)
+bool	ScalarConverter::isInt(std::istringstream &iss, char const *input)
 {
 	int	i;
 	iss >> i;
 	(void)i;
+	(void)input;
 	return (!iss.fail() && iss.eof());
 }
 
-bool	ScalarConverter::isFloat(std::istringstream &iss)
+bool	ScalarConverter::isFloat(std::istringstream &iss, char const *input)
 {
 	float	f;
-	iss >> f;
+	char	c[2];
+
 	(void)f;
-	return (!iss.fail() && iss.eof());
+	(void)input;
+	iss >> f;
+	if (!iss.fail())
+	{
+		iss >> c;
+		return (!iss.fail() && iss.eof() && !strcmp(c, "f"));
+	}
+	return (false);
 }
 
-bool	ScalarConverter::isDouble(std::istringstream &iss)
+bool	ScalarConverter::isDouble(std::istringstream &iss, char const *input)
 {
 	double	d;
 	iss >> d;
 	(void)d;
+	(void)input;
 	return (!iss.fail() && iss.eof());
 }
 
-void	ScalarConverter::convertChar(char &c)
+StringType	ScalarConverter::isUnknown(char const *input)
 {
-	printInt(static_cast<int>(c));
-	printFloat(static_cast<float>(c));
-	printDouble(static_cast<double>(c));
+	if (input)
+	{
+		if (!strcmp(input, "+inf") || !strcmp(input, "-inf") || !strcmp(input, "nan"))
+			return (DOUBLE);
+		else if (!strcmp(input, "+inff") || !strcmp(input, "-inff") || !strcmp(input, "nanf"))
+			return (FLOAT);
+	}
+	return (UNKNOWN);
 }
 
-void	ScalarConverter::convertInt(int &i)
+bool	ScalarConverter::hasADot(float f)
 {
-	printChar(static_cast<char>(i));
-	printFloat(static_cast<float>(i));
-	printDouble(static_cast<double>(i));
+	std::stringstream	ss;
+
+	if (f == std::numeric_limits<float>::infinity() || f == -std::numeric_limits<float>::infinity())
+		return (0);
+	ss << f;
+	return (ss.str().find('.') == std::string::npos && ss.str().find('n') == std::string::npos);
 }
 
-void	ScalarConverter::convertFloat(float &f)
+bool	ScalarConverter::hasADot(double d)
 {
-	printChar(static_cast<char>(f));
-	printInt(static_cast<int>(f));
-	printDouble(static_cast<double>(f));
+	std::stringstream	ss;
+
+	if (d == std::numeric_limits<double>::infinity() || d == -std::numeric_limits<double>::infinity())
+		return (0);
+	ss << d;
+	return (ss.str().find('.') == std::string::npos && ss.str().find('n') == std::string::npos);
 }
 
-void	ScalarConverter::convertDouble(double &d)
+void	ScalarConverter::convertChar(char const *input)
 {
-	printChar(static_cast<char>(d));
-	printInt(static_cast<int>(d));
-	printFloat(static_cast<float>(d));
+	char	c = input[0];
+
+	std::cout << "char: '" << c << "'" << std::endl;
+	std::cout << "int: " << static_cast<int>(c) << std::endl;
+	std::cout << "float: " << static_cast<float>(c) << std::endl;
+	std::cout << "double: " << static_cast<double>(c) << std::endl;
 }
 
-void	ScalarConverter::printChar(char c)
+void	ScalarConverter::convertInt(char const *input)
 {
-	std::cout << "char: " << c << std::endl;
-}
-
-void	ScalarConverter::printInt(int i)
-{
+	long	l = atol(input);
+	if (l > std::numeric_limits<int>::max() || l < std::numeric_limits<int>::min())
+	{
+		std::cerr << "Error: impossible to convert" << std::endl;
+		return ;
+	}
+	int		i = atoi(input);
+	if (isprint(i))
+		std::cout << "char: '" << static_cast<char>(i) << "'" << std::endl;
+	else if (i < 0 || i > 255)
+		std::cout << "char: Impossible" << std::endl;
+	else
+		std::cout << "char: Non displayable" << std::endl;
 	std::cout << "int: " << i << std::endl;
+	std::cout << "float: " << static_cast<float>(i) << ".0f" << std::endl;
+	std::cout << "double: " << static_cast<double>(i) << ".0" << std::endl;
+
 }
 
-void	ScalarConverter::printFloat(float f)
+void	ScalarConverter::convertFloat(char const *input)
 {
-	std::cout << "float: " << f << std::endl;
+	double	d = strtod(input, NULL);
+	if ((d > std::numeric_limits<float>::max() && hasADot(d)) || (d < std::numeric_limits<float>::min() && hasADot(d)))
+	{
+		std::cerr << "Error: impossible to convert" << std::endl;
+		return ;
+	}
+	float	f = atof(input);
+	if (f > std::numeric_limits<int>::max() || f < std::numeric_limits<int>::min() || !strcmp(input, "nanf"))
+	{
+		std::cout << "char: Impossible" << std::endl;
+		std::cout << "int: Impossible" << std::endl;
+	}
+	else
+	{
+		if (isprint(f))
+			std::cout << "char: '" << static_cast<char>(f) << "'" << std::endl;
+		else if (f < 0 || f > 255 || !strcmp(input, "nanf"))
+			std::cout << "char: Impossible" << std::endl;
+		else
+			std::cout << "char: Non displayable" << std::endl;
+		std::cout << "int: " << static_cast<int>(f) << std::endl;
+	}
+	std::cout << "float: " << f << (hasADot(f) ? ".0f" : "f") << std::endl;
+	std::cout << "double: " << d << (hasADot(d) ? ".0" : "") << std::endl;
 }
 
-void	ScalarConverter::printDouble(double d)
+void	ScalarConverter::convertDouble(char const *input)
 {
-	std::cout << "double: " << d << std::endl;
+	long double	ld = strtold(input, NULL);
+	double	d = strtod(input, NULL);
+	if ((ld > std::numeric_limits<double>::max() && hasADot(d)) || (ld < std::numeric_limits<double>::min() && hasADot(d)))
+	{
+		std::cerr << "Error: impossible to convert" << std::endl;
+		return ;
+	}
+	if (d > std::numeric_limits<int>::max() || d < std::numeric_limits<int>::min()  || !strcmp(input, "nan"))
+	{
+		std::cout << "char: Impossible" << std::endl;
+		std::cout << "int: Impossible" << std::endl;
+	}
+	else
+	{
+		if (isprint(d))
+			std::cout << "char: '" << static_cast<char>(d) << "'" << std::endl;
+		else if (d < 0 || d > 255  || !strcmp(input, "nan"))
+			std::cout << "char: Impossible" << std::endl;
+		else
+			std::cout << "char: Non displayable" << std::endl;
+		std::cout << "int: " << static_cast<int>(d) << std::endl;
+	}
+	if ((d > std::numeric_limits<float>::max() && hasADot(d)) || (d < std::numeric_limits<float>::min() && hasADot(d)))
+		std::cout << "float: Impossible" << std::endl;
+	else
+	{
+		float f = static_cast<float>(d);
+		std::cout << "float: " << f << (hasADot(f) ? ".0f" : "f") << std::endl;
+	}
+	std::cout << "double: " << d << (hasADot(d) ? ".0" : "") << std::endl;
 }
 
-void	ScalarConverter::convert(std::string &str)
+void	ScalarConverter::convert(const char *input)
 {
-	StringType	str_type = detectType(str);
+	StringType	str_type = detectType(input);
 	switch (str_type)
 	{
-	case Char:
-		convertChar(str[0]);
+	case CHAR:
+		convertChar(input);
 		break;
-	case Int:
-		convertInt(std::stoi(str));
+	case INT:
+		convertInt(input);
 		break;
-	case Float:
-		convertFloat(std::stof(str));
+	case FLOAT:
+		convertFloat(input);
 		break;
-	case Double:
-		convertDouble(std::stod(str));
+	case DOUBLE:
+		convertDouble(input);
 		break;
 	default:
-		std::cout << "Unknown type" << std::endl;
+		std::cerr << "Unknown type" << std::endl;
 		break;
 	}
 }

@@ -48,6 +48,10 @@
 		"streambuf": "cpp",
 		"typeinfo": "cpp",
 		"compare": "cpp",
-		"scoped_allocator": "cpp"
+		"scoped_allocator": "cpp",
+		"concepts": "cpp",
+		"numbers": "cpp",
+		"ranges": "cpp",
+		"span": "cpp"
 	}
 }

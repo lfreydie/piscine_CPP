@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lefreydier <lefreydier@student.42.fr>      +#+  +:+       +#+         #
+#    By: lfreydie <lfreydie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 15:01:41 by lfreydie          #+#    #+#              #
-#    Updated: 2024/04/17 14:47:46 by lefreydier       ###   ########.fr        #
+#    Updated: 2024/04/22 16:31:36 by lfreydie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # ----------- Program ----------- #
 
 CXX := c++
-NAME := a.out
+NAME := convert
 CXXFLAGS += -Wall -Wextra -Werror -std=c++98 -g3
 
 # --------- Directories --------- #
@@ -37,7 +37,7 @@ END=\033[0m
 
 # ------------ Files ----------- #
 
-SRC_F =	 main.cpp ScalarConverter.cpp
+SRC_F =	main.cpp ScalarConverter.cpp
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_F))
 OBJ = $(patsubst $(SRC_DIR)/%,$(OBJ_DIR)/%,$(SRC:.cpp=.o))
 DEPS = $(OBJ:.o=.d)
