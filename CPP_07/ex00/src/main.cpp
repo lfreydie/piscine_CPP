@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfreydie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lfreydie <lfreydie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 14:01:34 by lfreydie          #+#    #+#             */
-/*   Updated: 2024/04/23 20:15:11 by lfreydie         ###   ########.fr       */
+/*   Updated: 2024/04/24 17:06:15 by lfreydie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/whatever.hpp"
 
-int main( void ) 
+int main( void )
 {
 	int a = 2;
 	int b = 3;
