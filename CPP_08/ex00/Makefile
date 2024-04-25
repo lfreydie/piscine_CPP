@@ -6,7 +6,7 @@
 #    By: lfreydie <lfreydie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 15:01:41 by lfreydie          #+#    #+#              #
-#    Updated: 2024/04/23 14:10:53 by lfreydie         ###   ########.fr        #
+#    Updated: 2024/04/25 14:20:35 by lfreydie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ END=\033[0m
 
 # ------------ Files ----------- #
 
-SRC_F =	main.cpp
+SRC_F =	main.cpp 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_F))
 OBJ = $(patsubst $(SRC_DIR)/%,$(OBJ_DIR)/%,$(SRC:.cpp=.o))
 DEPS = $(OBJ:.o=.d)
