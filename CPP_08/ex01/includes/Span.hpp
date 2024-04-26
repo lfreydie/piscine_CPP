@@ -21,16 +21,32 @@ class Span
 	~Span();
 
 	Span &operator=(Span const &rhs);
-	class NoDistanceFound: std::exception
+	std::vector<int>	get_v() const;
+	unsigned int 		get_n() const;
+	class NoDistanceFound: public std::exception
 	{
-		virtual char const 	*what() const throw() {return ("No distance found");};
+	private:
+		std::string 	_msg;
+	public:
+		NoDistanceFound():_msg("No distance found") {};
+		NoDistanceFound(std::string msg):_msg(msg) {};
+		virtual ~NoDistanceFound() throw() {};
+		virtual char const 	*what() const throw() {return (_msg.c_str());};
 	};
-	class CouldNotInsert: std::exception
+	class WrongRange: public std::exception
 	{
-		virtual char const 	*what() const throw() {return ("Couldn't insert range of iterators");};
+	private:
+		std::string 	_msg;
+	public:
+		WrongRange():_msg("Range error") {};	
+		WrongRange(std::string msg):_msg(msg) {};	
+		virtual ~WrongRange() throw() {};
+		virtual char const 	*what() const throw() {return (_msg.c_str());};
 	};
 	void	addNumber(int nb);
-	void	addNumber(std::vector<int> first, std::vector<int> last);
+	void	addNumber(std::vector<int>::iterator first, std::vector<int>::iterator last);
 	int 	shortestSpan() const;
 	int 	longestSpan() const;
 };
+
+std::ostream 	&operator<<(std::ostream &o, Span const &rhs);

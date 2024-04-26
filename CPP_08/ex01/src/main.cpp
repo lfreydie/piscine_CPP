@@ -1,18 +1,5 @@
 #include "../includes/Span.hpp"
 
-//int main()
-//{
-//	Span sp = Span(5);
-//	sp.addNumber(6);
-//	sp.addNumber(3);
-//	sp.addNumber(17);
-//	sp.addNumber(9);
-//	sp.addNumber(11);
-//	std::cout << sp.shortestSpan() << std::endl;
-//	std::cout << sp.longestSpan() << std::endl;
-//	return (0);
-//}
-
 int main()
 {
 	try
@@ -29,8 +16,8 @@ int main()
 			sp.addNumber(17);
 			sp.addNumber(11);
 
-			std::cout << sp.shortestSpan() << std::endl;
-			std::cout << sp.longestSpan() << std::endl;
+			std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
+			std::cout << "Longest span: " << sp.longestSpan() << std::endl;
 		}
 		catch(const std::exception& e)
 		{
@@ -74,8 +61,8 @@ int main()
 			Span sp4 = Span(5);
 			std::vector<int> numbersToAdd;
 			numbersToAdd.push_back(6);
-			numbersToAdd.push_back(3);
-			numbersToAdd.push_back(9);
+			numbersToAdd.push_back(2);
+			numbersToAdd.push_back(7);
 			numbersToAdd.push_back(17);
 			numbersToAdd.push_back(11);
 			sp4.addNumber(numbersToAdd.begin(), numbersToAdd.end());
@@ -95,7 +82,7 @@ int main()
 
 				srand(time(NULL));
 				Span sp(10000, 1000);
-				// std::cout << sp << std::endl; // if you want to print the vector
+				//std::cout << sp << std::endl; // if you want to print the vector
 				std::cout << sp.shortestSpan() << std::endl;
 				std::cout << sp.longestSpan() << std::endl;
 		}
