@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lfreydie <lfreydie@student.42.fr>          +#+  +:+       +#+         #
+#    By: lefreydier <lefreydier@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 15:01:41 by lfreydie          #+#    #+#              #
-#    Updated: 2024/04/25 14:20:35 by lfreydie         ###   ########.fr        #
+#    Updated: 2024/04/29 18:02:12 by lefreydier       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # ----------- Program ----------- #
 
 CXX := c++
-NAME := test_template 
+NAME := a.out
 CXXFLAGS += -Wall -Wextra -Werror -std=c++98 -g3
 
 # --------- Directories --------- #
@@ -37,7 +37,7 @@ END=\033[0m
 
 # ------------ Files ----------- #
 
-SRC_F =	main.cpp 
+SRC_F =	main.cpp
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_F))
 OBJ = $(patsubst $(SRC_DIR)/%,$(OBJ_DIR)/%,$(SRC:.cpp=.o))
 DEPS = $(OBJ:.o=.d)
